@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921104907) do
+ActiveRecord::Schema.define(version: 20141211210719) do
 
   create_table "article_categories", force: true do |t|
     t.string "name",        default: "", null: false
     t.string "description"
   end
 
-  add_index "article_categories", ["name"], name: "index_article_categories_on_name", unique: true, using: :btree
+  add_index "article_categories", ["name"], name: "index_article_categories_on_name", unique: true
 
   create_table "article_prices", force: true do |t|
     t.integer  "article_id"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.datetime "created_at"
   end
 
-  add_index "article_prices", ["article_id"], name: "index_article_prices_on_article_id", using: :btree
+  add_index "article_prices", ["article_id"], name: "index_article_prices_on_article_id"
 
   create_table "articles", force: true do |t|
     t.string   "name",                                        default: "",   null: false
@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.integer  "quantity",                                    default: 0
   end
 
-  add_index "articles", ["article_category_id"], name: "index_articles_on_article_category_id", using: :btree
-  add_index "articles", ["name", "supplier_id"], name: "index_articles_on_name_and_supplier_id", using: :btree
-  add_index "articles", ["supplier_id"], name: "index_articles_on_supplier_id", using: :btree
-  add_index "articles", ["type"], name: "index_articles_on_type", using: :btree
+  add_index "articles", ["article_category_id"], name: "index_articles_on_article_category_id"
+  add_index "articles", ["name", "supplier_id"], name: "index_articles_on_name_and_supplier_id"
+  add_index "articles", ["supplier_id"], name: "index_articles_on_supplier_id"
+  add_index "articles", ["type"], name: "index_articles_on_type"
 
   create_table "assignments", force: true do |t|
     t.integer "user_id",  default: 0,     null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.boolean "accepted", default: false
   end
 
-  add_index "assignments", ["user_id", "task_id"], name: "index_assignments_on_user_id_and_task_id", unique: true, using: :btree
+  add_index "assignments", ["user_id", "task_id"], name: "index_assignments_on_user_id_and_task_id", unique: true
 
   create_table "deliveries", force: true do |t|
     t.integer  "supplier_id"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.text     "note"
   end
 
-  add_index "deliveries", ["supplier_id"], name: "index_deliveries_on_supplier_id", using: :btree
+  add_index "deliveries", ["supplier_id"], name: "index_deliveries_on_supplier_id"
 
   create_table "financial_transactions", force: true do |t|
     t.integer  "ordergroup_id",                         default: 0, null: false
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.datetime "created_on",                                        null: false
   end
 
-  add_index "financial_transactions", ["ordergroup_id"], name: "index_financial_transactions_on_ordergroup_id", using: :btree
+  add_index "financial_transactions", ["ordergroup_id"], name: "index_financial_transactions_on_ordergroup_id"
 
   create_table "group_order_article_quantities", force: true do |t|
     t.integer  "group_order_article_id", default: 0, null: false
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.datetime "created_on",                         null: false
   end
 
-  add_index "group_order_article_quantities", ["group_order_article_id"], name: "index_group_order_article_quantities_on_group_order_article_id", using: :btree
+  add_index "group_order_article_quantities", ["group_order_article_id"], name: "index_group_order_article_quantities_on_group_order_article_id"
 
   create_table "group_order_articles", force: true do |t|
     t.integer  "group_order_id",                           default: 0, null: false
@@ -104,9 +104,9 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.decimal  "result_computed",  precision: 8, scale: 3
   end
 
-  add_index "group_order_articles", ["group_order_id", "order_article_id"], name: "goa_index", unique: true, using: :btree
-  add_index "group_order_articles", ["group_order_id"], name: "index_group_order_articles_on_group_order_id", using: :btree
-  add_index "group_order_articles", ["order_article_id"], name: "index_group_order_articles_on_order_article_id", using: :btree
+  add_index "group_order_articles", ["group_order_id", "order_article_id"], name: "goa_index", unique: true
+  add_index "group_order_articles", ["group_order_id"], name: "index_group_order_articles_on_group_order_id"
+  add_index "group_order_articles", ["order_article_id"], name: "index_group_order_articles_on_order_article_id"
 
   create_table "group_orders", force: true do |t|
     t.integer  "ordergroup_id",                              default: 0, null: false
@@ -117,9 +117,9 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.integer  "updated_by_user_id"
   end
 
-  add_index "group_orders", ["order_id"], name: "index_group_orders_on_order_id", using: :btree
-  add_index "group_orders", ["ordergroup_id", "order_id"], name: "index_group_orders_on_ordergroup_id_and_order_id", unique: true, using: :btree
-  add_index "group_orders", ["ordergroup_id"], name: "index_group_orders_on_ordergroup_id", using: :btree
+  add_index "group_orders", ["order_id"], name: "index_group_orders_on_order_id"
+  add_index "group_orders", ["ordergroup_id", "order_id"], name: "index_group_orders_on_ordergroup_id_and_order_id", unique: true
+  add_index "group_orders", ["ordergroup_id"], name: "index_group_orders_on_ordergroup_id"
 
   create_table "groups", force: true do |t|
     t.string   "type",                                              default: "",    null: false
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.boolean  "ignore_apple_restriction",                          default: false
   end
 
-  add_index "groups", ["name"], name: "index_groups_on_name", unique: true, using: :btree
+  add_index "groups", ["name"], name: "index_groups_on_name", unique: true
 
   create_table "invites", force: true do |t|
     t.string   "token",      default: "", null: false
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.string   "email",      default: "", null: false
   end
 
-  add_index "invites", ["token"], name: "index_invites_on_token", using: :btree
+  add_index "invites", ["token"], name: "index_invites_on_token"
 
   create_table "invoices", force: true do |t|
     t.integer  "supplier_id"
@@ -168,15 +168,15 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.datetime "updated_at"
   end
 
-  add_index "invoices", ["delivery_id"], name: "index_invoices_on_delivery_id", using: :btree
-  add_index "invoices", ["supplier_id"], name: "index_invoices_on_supplier_id", using: :btree
+  add_index "invoices", ["delivery_id"], name: "index_invoices_on_delivery_id"
+  add_index "invoices", ["supplier_id"], name: "index_invoices_on_supplier_id"
 
   create_table "memberships", force: true do |t|
     t.integer "group_id", default: 0, null: false
     t.integer "user_id",  default: 0, null: false
   end
 
-  add_index "memberships", ["user_id", "group_id"], name: "index_memberships_on_user_id_and_group_id", unique: true, using: :btree
+  add_index "memberships", ["user_id", "group_id"], name: "index_memberships_on_user_id_and_group_id", unique: true
 
   create_table "messages", force: true do |t|
     t.integer  "sender_id"
@@ -200,8 +200,8 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.integer "units_received"
   end
 
-  add_index "order_articles", ["order_id", "article_id"], name: "index_order_articles_on_order_id_and_article_id", unique: true, using: :btree
-  add_index "order_articles", ["order_id"], name: "index_order_articles_on_order_id", using: :btree
+  add_index "order_articles", ["order_id", "article_id"], name: "index_order_articles_on_order_id_and_article_id", unique: true
+  add_index "order_articles", ["order_id"], name: "index_order_articles_on_order_id"
 
   create_table "order_comments", force: true do |t|
     t.integer  "order_id"
@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.datetime "created_at"
   end
 
-  add_index "order_comments", ["order_id"], name: "index_order_comments_on_order_id", using: :btree
+  add_index "order_comments", ["order_id"], name: "index_order_comments_on_order_id"
 
   create_table "orders", force: true do |t|
     t.integer  "supplier_id"
@@ -224,7 +224,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.integer  "created_by_user_id"
   end
 
-  add_index "orders", ["state"], name: "index_orders_on_state", using: :btree
+  add_index "orders", ["state"], name: "index_orders_on_state"
 
   create_table "page_versions", force: true do |t|
     t.integer  "page_id"
@@ -236,7 +236,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.datetime "updated_at"
   end
 
-  add_index "page_versions", ["page_id"], name: "index_page_versions_on_page_id", using: :btree
+  add_index "page_versions", ["page_id"], name: "index_page_versions_on_page_id"
 
   create_table "pages", force: true do |t|
     t.string   "title"
@@ -250,8 +250,8 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.datetime "updated_at"
   end
 
-  add_index "pages", ["permalink"], name: "index_pages_on_permalink", using: :btree
-  add_index "pages", ["title"], name: "index_pages_on_title", using: :btree
+  add_index "pages", ["permalink"], name: "index_pages_on_permalink"
+  add_index "pages", ["title"], name: "index_pages_on_title"
 
   create_table "periodic_task_groups", force: true do |t|
     t.date     "next_task_date"
@@ -268,7 +268,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.datetime "updated_at",            null: false
   end
 
-  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
 
   create_table "stock_changes", force: true do |t|
     t.integer  "delivery_id"
@@ -279,9 +279,9 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.integer  "stock_taking_id"
   end
 
-  add_index "stock_changes", ["delivery_id"], name: "index_stock_changes_on_delivery_id", using: :btree
-  add_index "stock_changes", ["stock_article_id"], name: "index_stock_changes_on_stock_article_id", using: :btree
-  add_index "stock_changes", ["stock_taking_id"], name: "index_stock_changes_on_stock_taking_id", using: :btree
+  add_index "stock_changes", ["delivery_id"], name: "index_stock_changes_on_delivery_id"
+  add_index "stock_changes", ["stock_article_id"], name: "index_stock_changes_on_stock_article_id"
+  add_index "stock_changes", ["stock_taking_id"], name: "index_stock_changes_on_stock_taking_id"
 
   create_table "stock_takings", force: true do |t|
     t.date     "date"
@@ -308,7 +308,7 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.string   "shared_sync_method"
   end
 
-  add_index "suppliers", ["name"], name: "index_suppliers_on_name", unique: true, using: :btree
+  add_index "suppliers", ["name"], name: "index_suppliers_on_name", unique: true
 
   create_table "tasks", force: true do |t|
     t.string   "name",                   default: "",    null: false
@@ -323,9 +323,9 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.integer  "periodic_task_group_id"
   end
 
-  add_index "tasks", ["due_date"], name: "index_tasks_on_due_date", using: :btree
-  add_index "tasks", ["name"], name: "index_tasks_on_name", using: :btree
-  add_index "tasks", ["workgroup_id"], name: "index_tasks_on_workgroup_id", using: :btree
+  add_index "tasks", ["due_date"], name: "index_tasks_on_due_date"
+  add_index "tasks", ["name"], name: "index_tasks_on_name"
+  add_index "tasks", ["workgroup_id"], name: "index_tasks_on_workgroup_id"
 
   create_table "users", force: true do |t|
     t.string   "nick"
@@ -335,13 +335,18 @@ ActiveRecord::Schema.define(version: 20140921104907) do
     t.string   "last_name",              default: "", null: false
     t.string   "email",                  default: "", null: false
     t.string   "phone"
+    t.date     "birthday"
+    t.string   "address",                default: "", null: false
+    t.string   "postalcode",             default: "", null: false
+    t.string   "city",                   default: "", null: false
+    t.string   "iban",                   default: "", null: false
     t.datetime "created_on",                          null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_expires"
     t.datetime "last_login"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["nick"], name: "index_users_on_nick", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["nick"], name: "index_users_on_nick", unique: true
 
 end

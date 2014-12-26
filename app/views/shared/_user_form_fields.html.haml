@@ -9,7 +9,12 @@
 - password_html = autocomplete_flag_to_password_html(local_assigns[:password_autocomplete])
 = f.input :password, :required => f.object.new_record?, input_html: password_html
 = f.input :password_confirmation, :required => f.object.new_record?, input_html: password_html
+= f.input :birthday, as: :date_picker
 = f.input :phone
+= f.input :address
+= f.input :postalcode
+= f.input :city
+= f.input :iban
 
 - if local_assigns[:with_address] && (f.object.ordergroup || f.object.new_record?)
   = f.fields_for [:ordergroup, f.object.ordergroup || Ordergroup.new] do |ogf|

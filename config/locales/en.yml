@@ -156,7 +156,12 @@ en:
         ordergroup: Ordergroup
         password: Password
         password_confirmation: Repeat password
+        birthday: Birthday
         phone: Telephone
+        address: Address
+        postalcode: Postal Code
+        city: City
+        iban: IBAN
         workgroup:
           one: Workgroup
           other: Workgroups
