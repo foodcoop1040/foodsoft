@@ -66,6 +66,31 @@ ActiveRecord::Schema.define(version: 20150201000000) do
 
   add_index "assignments", ["user_id", "task_id"], name: "index_assignments_on_user_id_and_task_id", unique: true
 
+  create_table "bank_accounts", force: true do |t|
+    t.string  "name",                            default: "", null: false
+    t.string  "iban",                            default: "", null: false
+    t.string  "description"
+    t.decimal "balance", precision: 12, scale: 2, default: 0, null: false
+  end
+
+  create_table "bank_transactions", force: true do |t|
+    t.integer "bank_account_id",                default: 0, null: false
+    t.date    "booking_date"
+    t.date    "value_date"
+    t.decimal "amount", precision: 8, scale: 2, default: 0, null: false
+    t.string  "booking_type"
+    t.string  "booking_number"
+    t.text    "text"
+    t.string  "iban"
+    t.string  "bic"
+    t.string  "name"
+    t.string  "reference"
+    t.text    "receipt"
+    t.binary  "image", limit: 1.megabyte
+  end
+
+  add_index "bank_transactions", ["bank_account_id"], name: "index_bank_transactions_on_bank_account_id"
+
   create_table "deliveries", force: true do |t|
     t.integer  "supplier_id"
     t.date     "delivered_on"

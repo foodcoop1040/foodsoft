@@ -1,0 +1,6 @@
+%h1= @bank_transaction.name
+
+- if @bank_transaction.image
+  =image_tag @bank_transaction.image_url
+- else
+  %pre= preserve @bank_transaction.receipt
