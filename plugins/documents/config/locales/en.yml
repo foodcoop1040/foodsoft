@@ -1,0 +1,15 @@
+en:
+  navigation:
+    documents: Documents
+  documents:
+    create:
+      error: 'Document could not be created: %{error}'
+      notice: Document was created
+    destroy:
+      error: 'Document could not be deleted: %{error}'
+      no_right: You do not have enough rights to delete the document
+      notice: Document was deleted
+    index:
+      title: Documents
+    new:
+      title: New Document

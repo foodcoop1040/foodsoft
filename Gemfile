@@ -48,6 +48,7 @@ gem 'mechanize'
 gem 'acts_as_versioned', github: 'technoweenie/acts_as_versioned'
 gem 'foodsoft_wiki', path: 'plugins/wiki'
 gem 'foodsoft_messages', path: 'plugins/messages'
+gem 'foodsoft_documents', path: 'plugins/documents'
 
 # plugins not enabled by default
 #gem 'foodsoft_uservoice', path: 'plugins/uservoice'
@@ -65,20 +66,20 @@ group :development do
   # allow to use `debugger` https://github.com/conradirwin/pry-rescue
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
-  
+
   # Better error output
   gem 'better_errors'
   gem 'binding_of_caller'
   # gem "rails-i18n-debug"
   # chrome debugging extension https://github.com/dejan/rails_panel
   gem 'meta_request'
-  
+
   # Get infos when not using proper eager loading
   gem 'bullet'
 
   # Hide assets requests in log
   gem 'quiet_assets'
-  
+
   # Deploy with Capistrano
   gem 'capistrano', '~> 3.2.0', require: false
   gem 'capistrano-rvm', require: false

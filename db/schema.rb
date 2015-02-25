@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201000000) do
+ActiveRecord::Schema.define(version: 20150202000000) do
 
   create_table "article_categories", force: true do |t|
     t.string "name",        default: "", null: false
@@ -99,6 +99,15 @@ ActiveRecord::Schema.define(version: 20150201000000) do
   end
 
   add_index "deliveries", ["supplier_id"], name: "index_deliveries_on_supplier_id"
+
+  create_table "documents", force: true do |t|
+    t.string "name"
+    t.binary "content", limit: 16.megabyte
+    t.integer "user_id"
+    t.datetime "created_at"
+  end
+
+  add_index "documents", ["name"], name: "index_documents_on_name", unique: true
 
   create_table "financial_transactions", force: true do |t|
     t.integer  "ordergroup_id",                         default: 0, null: false

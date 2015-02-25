@@ -37,6 +37,11 @@ de:
         delivered_on: Lieferdatum
         note: Notiz
         supplier: Lieferantin
+      document:
+        name: Name
+        content: Inhalt
+        created_at: Erstellt am
+        user_id: Erstellt von
       financial_transaction:
         amount: Betrag
         created_on: Datum
@@ -580,6 +585,18 @@ de:
     update:
       notice: Lieferung wurde aktualisiert.
   documents:
+    create:
+      error: 'Dokument konnte nicht erstellt werden: %{error}'
+      notice: Dokument wurde erstellt
+    destroy:
+      error: 'Dokument konnt nicht gelöscht werden: %{error}'
+      no_right: Du hast nicht genügend Rechte um die Datei zu löschen
+      notice: Dokument wurde gelöscht
+    index:
+      new: Neues Dokument anlegen
+      title: Dokumente
+    new:
+      title: Neues Dokument
     order_by_articles:
       filename: Bestellung %{name}-%{date} - Artikelsortierung
       rows:
@@ -1170,6 +1187,7 @@ de:
       suppliers: Lieferanten/Artikel
       title: Artikel
     dashboard: Dashboard
+    documents: Dokumente
     finances:
       accounts: Konten verwalten
       balancing: Bestellungen abrechnen
