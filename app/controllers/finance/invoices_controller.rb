@@ -19,7 +19,12 @@ class Finance::InvoicesController < ApplicationController
   end
 
   def create
-    @invoice = Invoice.new(params[:invoice])
+    @invoice = Invoice.new(params[:invoice]) do |t|
+      if params[:invoice][:attachment_data]
+        t.attachment_data = params[:invoice][:attachment_data].read
+        t.attachment_mime = params[:invoice][:attachment_data].content_type
+      end
+    end
 
     if @invoice.save
       flash[:notice] = I18n.t('finance.create.notice')
@@ -49,5 +54,10 @@ class Finance::InvoicesController < ApplicationController
     @invoice.destroy
 
     redirect_to finance_invoices_url
+  end
+
+  def attachment
+    @invoice = Invoice.find(params[:invoice_id])
+    send_data(@invoice.attachment_data, :type => @invoice.attachment_mime)
   end
 end

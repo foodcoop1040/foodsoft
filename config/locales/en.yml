@@ -54,7 +54,9 @@ en:
         total_price: Sum
       invoice:
         amount: Amount
+        attachment: Attachment
         date: Billing date
+        delete_attachment: Delete attachment
         delivery: Delivery
         deposit: Deposit charged
         deposit_credit: Deposit returned
@@ -1666,6 +1668,7 @@ en:
     close: Close
     copy: Copy
     delete: Delete
+    download: Download
     edit: Edit
     marks:
       close: "&times;"

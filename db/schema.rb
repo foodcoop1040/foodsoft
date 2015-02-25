@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211210719) do
+ActiveRecord::Schema.define(version: 20150201000000) do
 
   create_table "article_categories", force: true do |t|
     t.string "name",        default: "", null: false
@@ -159,6 +159,8 @@ ActiveRecord::Schema.define(version: 20141211210719) do
     t.integer  "order_id"
     t.string   "number"
     t.date     "date"
+    t.string   "attachment_mime"
+    t.binary   "attachment_data", limit: 8.megabyte
     t.date     "paid_on"
     t.text     "note"
     t.decimal  "amount",         precision: 8, scale: 2, default: 0, null: false

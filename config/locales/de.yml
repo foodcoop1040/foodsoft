@@ -54,7 +54,9 @@ de:
         total_price: Summe
       invoice:
         amount: Betrag
+        attachment: Anhang
         date: Rechnungsdatum
+        delete_attachment: Anhang löschen
         delivery: Lieferung
         deposit: Pfand berechnet
         deposit_credit: Pfand gutgeschrieben
@@ -1657,6 +1659,7 @@ de:
     close: Schließen
     copy: Kopieren
     delete: Löschen
+    download: Herunterladen
     edit: Bearbeiten
     marks:
       close: "&times;"

@@ -54,7 +54,9 @@ fr:
         total_price: Total
       invoice:
         amount: Montant
+        attachment: Appendice
         date: Date de facturation
+        delete_attachment: Supprimer appendice
         delivery: Réapprovisionnement
         deposit: Consigne facturée
         deposit_credit: Consigne remboursée
@@ -1670,6 +1672,7 @@ fr:
     close: Fermer
     copy: Copier
     delete: Supprimer
+    download: Télécharger
     edit: Modifier
     marks:
       close: "&times;"
