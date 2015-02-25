@@ -130,6 +130,11 @@ class User < ActiveRecord::Base
     groups.detect {|group| group.role_finance?}
   end
   
+  # Checks the invoices role
+  def role_invoices?
+    true
+  end
+
   # Checks the article_meta role
   def role_article_meta?
     groups.detect {|group| group.role_article_meta?}
