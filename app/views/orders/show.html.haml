@@ -1,7 +1,7 @@
 - title t('.title', name: @order.name)
 
 - content_for :actionbar do
-  - unless @order.open?
+  - unless @order.open? || !current_user.role_orders?
     = link_to t('.create_invoice'), new_finance_invoice_path(:order_id => @order, :supplier_id => @order.supplier),
       class: 'btn'
 
@@ -64,16 +64,17 @@
             %li= link_to t('.download.fax_txt'), order_path(@order, format: :txt), {title: t('.download.download_file')}
           %li= link_to t('.download.fax_csv'), order_path(@order, format: :csv), {title: t('.download.download_file')}
 
-    - if @order.open?
-      = link_to t('.action_end'), finish_order_path(@order), method: :post, class: 'btn btn-success',
-        data: {confirm: t('.confirm_end', order: @order.name)}
-      = link_to t('ui.edit'), edit_order_path(@order), class: 'btn'
-    - elsif not @order.closed? and not @order.stockit?
-      -# TODO btn-success class only if not received before
-      = link_to t('orders.index.action_receive'), receive_order_path(@order), class: 'btn btn-success'
-    - unless @order.closed?
-      = link_to t('ui.delete'), @order, data: {confirm: t('.confirm_delete')}, method: :delete,
-        class: 'btn btn-danger'
+    - if current_user.role_orders?
+      - if @order.open?
+        = link_to t('.action_end'), finish_order_path(@order), method: :post, class: 'btn btn-success',
+          data: {confirm: t('.confirm_end', order: @order.name)}
+        = link_to t('ui.edit'), edit_order_path(@order), class: 'btn'
+      - elsif not @order.closed? and not @order.stockit?
+        -# TODO btn-success class only if not received before
+        = link_to t('orders.index.action_receive'), receive_order_path(@order), class: 'btn btn-success'
+      - unless @order.closed?
+        = link_to t('ui.delete'), @order, data: {confirm: t('.confirm_delete')}, method: :delete,
+          class: 'btn btn-danger'
 
 %section#articles_table
   = render @partial, order: @order

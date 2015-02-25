@@ -81,6 +81,7 @@ de:
         closed_by: Abgerechnet von
         created_by: Erstellt von
         ends: Endet am
+        expected_delivery_on: Geplante Lieferung am
         name: Lieferant
         note: Notiz
         starts: Läuft vom
@@ -1200,6 +1201,7 @@ de:
     ordergroups: Bestellgruppen
     orders:
       archive: Meine Bestellungen
+      expected_delivery: Geplante Lieferung
       manage: Bestellverwaltung
       ordering: Bestellen!
       title: Bestellungen
@@ -1243,6 +1245,10 @@ de:
       field_unlocked_title: Die Verteilung dieses Artikels auf die einzelnen Bestellgruppen wurde manuell angepasst. Wenn du die gelieferte Menge änderst, werden die vorherigen manuellen Änderungen überschrieben.
     edit_amounts:
       no_articles_available: Keine Artikel zum hinzufügen verfügbar
+    expected_delivery:
+      fax_pdf: Bestellung PDF
+      group_pdf: Gruppensortierung PDF
+      title: Geplante Lieferung
     fax:
       amount: Menge
       articles: Artikel

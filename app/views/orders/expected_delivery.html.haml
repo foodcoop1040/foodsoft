@@ -1,0 +1,18 @@
+- title t('.title')
+
+- @orders.each do |expected_delivery, orders|
+  %h2= format_date(expected_delivery)
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= heading_helper Order, :name
+        %th= heading_helper Order, :note
+        %th{colspan: "2"}
+    %tbody
+      - for order in orders
+        %tr
+          %td= link_to h(order.name), order_path(order)
+          %td= order.note
+          %td= order_pdf(order, :groups, t('.group_pdf'), 'btn')
+          %td= order_pdf(order, :fax, t('.fax_pdf'), 'btn')

@@ -47,6 +47,7 @@ Foodsoft::Application.routes.draw do
         get :receive_on_order_article_update
       end
 
+      get :expected_delivery, on: :collection
       resources :order_articles
     end
 

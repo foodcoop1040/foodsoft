@@ -253,6 +253,7 @@ ActiveRecord::Schema.define(version: 20150202000000) do
     t.text     "note"
     t.datetime "starts"
     t.datetime "ends"
+    t.date     "expected_delivery_on",
     t.string   "state",                                      default: "open"
     t.integer  "lock_version",                               default: 0,      null: false
     t.integer  "updated_by_user_id"

@@ -4,7 +4,7 @@
 # Normal ordering actions of members of order groups is handled by the OrderingController.
 class OrdersController < ApplicationController
 
-  before_filter :authenticate_orders
+  before_filter :authenticate_orders, except: [:expected_delivery, :show]
   before_filter :remove_empty_article, only: [:create, :update]
 
   # List orders
@@ -24,6 +24,10 @@ class OrdersController < ApplicationController
     end
     @suppliers = Supplier.having_articles.order('suppliers.name')
     @orders = Order.closed.includes(:supplier).reorder(sort).page(params[:page]).per(@per_page)
+  end
+
+  def expected_delivery
+    @orders = Order.finished_not_closed.order('expected_delivery_on DESC').group_by { |o| o.expected_delivery_on }
   end
 
   # Gives a view for the results to a specific order

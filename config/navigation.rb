@@ -23,6 +23,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :orders, I18n.t('navigation.orders.title'), '#' do |subnav|
       subnav.item :ordering, I18n.t('navigation.orders.ordering'), group_orders_path
       subnav.item :ordering_archive, I18n.t('navigation.orders.archive'), archive_group_orders_path
+      subnav.item :expected_delivery, I18n.t('navigation.orders.expected_delivery'), expected_delivery_orders_path
       subnav.item :orders, I18n.t('navigation.orders.manage'), orders_path, if: Proc.new { current_user.role_orders? }
     end
 

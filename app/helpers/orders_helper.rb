@@ -10,10 +10,11 @@ module OrdersHelper
   # @param order [Order]
   # @param document [String] Document to display, one of +groups+, +articles+, +fax+, +matrix+
   # @param text [String] Link text
+  # @param clas [String] Class of link
   # @return [String] Link to order document
   # @see OrdersController#show
-  def order_pdf(order, document, text)
-    link_to text, order_path(order, document: document, format: :pdf), title: I18n.t('helpers.orders.order_pdf')
+  def order_pdf(order, document, text, clas=nil)
+    link_to text, order_path(order, document: document, format: :pdf), title: I18n.t('helpers.orders.order_pdf'), class: clas
   end
 
   def options_for_suppliers_to_select

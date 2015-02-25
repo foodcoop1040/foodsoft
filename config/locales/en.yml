@@ -76,6 +76,7 @@ en:
         closed_by: Settled by
         created_by: Created by
         ends: Ends at
+        expected_delivery_on: Expected delivery on
         name: Supplier
         note: Note
         starts: Starts at
@@ -1219,6 +1220,7 @@ en:
     ordergroups: Ordergroups
     orders:
       archive: My Orders
+      expected_delivery: Expected delivery
       manage: Manage orders
       ordering: Place order!
       title: Orders
@@ -1262,6 +1264,10 @@ en:
       field_unlocked_title: The distribution of this article among the ordergroups was changed manually. When you change the amount, those manual changes will be overwritten.
     edit_amounts:
       no_articles_available: No articles to add.
+    expected_delivery:
+      fax_pdf: Fax PDF
+      group_pdf: Group PDF
+      title: Expected delivery
     fax:
       amount: Amount
       articles: Articles
