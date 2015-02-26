@@ -383,6 +383,7 @@ ActiveRecord::Schema.define(version: 20150202000000) do
     t.string   "reset_password_token"
     t.datetime "reset_password_expires"
     t.datetime "last_login"
+    t.datetime "last_activity"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
