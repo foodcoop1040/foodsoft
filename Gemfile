@@ -44,12 +44,15 @@ gem 'attribute_normalizer'
 gem 'ice_cube', github: 'wvengen/ice_cube', branch: 'issues/50-from_ical-rebased' # fork until merged
 gem 'recurring_select'
 gem 'mechanize'
+gem 'forem', :github => "radar/forem", :branch => "rails4"
+gem 'forem-bootstrap', :github => "radar/forem-bootstrap"
 
 # we use the git version of acts_as_versioned, and need to include it in this Gemfile
 gem 'acts_as_versioned', github: 'technoweenie/acts_as_versioned'
 gem 'foodsoft_wiki', path: 'plugins/wiki'
 gem 'foodsoft_messages', path: 'plugins/messages'
 gem 'foodsoft_documents', path: 'plugins/documents'
+gem 'foodsoft_forum', path: 'plugins/forum'
 
 # plugins not enabled by default
 #gem 'foodsoft_uservoice', path: 'plugins/uservoice'

@@ -16,6 +16,29 @@ GIT
       responders
 
 GIT
+  remote: git://github.com/radar/forem-bootstrap.git
+  revision: 10be50afc1d0a22af1306076e41624c55fc585be
+  specs:
+    forem-bootstrap (0.0.1)
+      bootstrap-sass (~> 3.1)
+
+GIT
+  remote: git://github.com/radar/forem.git
+  revision: e6273a8f15fb6573a743c7a71284a184647988fa
+  branch: rails4
+  specs:
+    forem (1.0.0.beta1)
+      cancancan (~> 1.7)
+      decorators (~> 1.0.2)
+      friendly_id (~> 5.0.0)
+      gemoji (= 2.1.0)
+      rails (~> 4.0, <= 4.2)
+      sanitize (= 2.0.6)
+      select2-rails (~> 3.5.4)
+      simple_form (~> 3.0)
+      workflow (= 1.0.0)
+
+GIT
   remote: git://github.com/technoweenie/acts_as_versioned.git
   revision: 63b1fc8529d028fae632fe80ec0cb25df56cd76b
   specs:
@@ -28,6 +51,18 @@ GIT
   branch: issues/50-from_ical-rebased
   specs:
     ice_cube (0.12.1)
+
+PATH
+  remote: plugins/documents
+  specs:
+    foodsoft_documents (0.0.1)
+      rails
+
+PATH
+  remote: plugins/forum
+  specs:
+    foodsoft_forum (0.0.1)
+      rails
 
 PATH
   remote: plugins/messages
@@ -88,6 +123,9 @@ GEM
       activerecord (>= 3.0.0)
     arel (6.0.0)
     attribute_normalizer (1.2.0)
+    autoprefixer-rails (5.1.11)
+      execjs
+      json
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -96,11 +134,15 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-datepicker-rails (1.3.1.1)
       railties (>= 3.0)
+    bootstrap-sass (3.3.4.1)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     builder (3.2.2)
     bullet (4.14.0)
       activesupport (>= 3.0.0)
       uniform_notifier (>= 1.6.0)
     callsite (0.0.11)
+    cancancan (1.10.1)
     capistrano (3.2.1)
       i18n
       rake (>= 10.0.0)
@@ -146,6 +188,8 @@ GEM
     date_time_attribute (0.1.2)
       activesupport (>= 3.0.0)
     debug_inspector (0.0.2)
+    decorators (1.0.5)
+      railties (>= 3.0.19)
     deface (1.0.1)
       colorize (>= 0.5.8)
       nokogiri (~> 1.6.0)
@@ -154,6 +198,8 @@ GEM
     diff-lcs (1.2.5)
     diffy (3.0.7)
     docile (1.1.5)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
     enum_help (0.0.14)
     erubis (2.7.0)
     eventmachine (1.0.4)
@@ -170,6 +216,9 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.6)
+    friendly_id (5.0.5)
+      activerecord (>= 4.0.0)
+    gemoji (2.1.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     haml (4.1.0.beta.1)
@@ -190,6 +239,8 @@ GEM
       haml (>= 4.0.0.rc.1)
       hpricot (~> 0.8.6)
       ruby_parser (~> 3.1.1)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     i18n-js (3.0.0.rc8)
       i18n (~> 0.6)
@@ -226,6 +277,15 @@ GEM
       skinny (>= 0.1.2)
       sqlite3-ruby
       thin
+    mechanize (2.7.3)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0)
+      mime-types (~> 2.0)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.4)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
     meta_request (0.3.4)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -237,12 +297,15 @@ GEM
     mono_logger (1.1.0)
     multi_json (1.10.1)
     mysql2 (0.3.17)
+    net-http-digest_auth (1.4)
+    net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
     netrc (0.10.2)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    ntlm-http (0.1.1)
     pdf-core (0.4.0)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
@@ -358,6 +421,8 @@ GEM
     ruby_parser (3.1.3)
       sexp_processor (~> 4.1)
     rubyzip (1.1.6)
+    sanitize (2.0.6)
+      nokogiri (>= 1.4.4)
     sass (3.4.9)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -434,6 +499,9 @@ GEM
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     uniform_notifier (1.6.2)
     vegas (0.1.11)
       rack (>= 1.0.0)
@@ -442,6 +510,7 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (~> 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    webrobots (0.1.1)
     websocket (1.2.1)
     whenever (0.9.4)
       chronic (>= 0.6.3)
@@ -449,6 +518,7 @@ GEM
       builder
       expression_parser
       rinku
+    workflow (1.0.0)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -478,8 +548,12 @@ DEPENDENCIES
   exception_notification
   factory_girl_rails
   faker
+  foodsoft_documents!
+  foodsoft_forum!
   foodsoft_messages!
   foodsoft_wiki!
+  forem!
+  forem-bootstrap!
   haml-rails
   i18n-js (~> 3.0.0.rc8)
   i18n-spec
@@ -490,6 +564,7 @@ DEPENDENCIES
   less-rails
   localize_input!
   mailcatcher
+  mechanize
   meta_request
   mysql2
   prawn
