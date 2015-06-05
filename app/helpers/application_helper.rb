@@ -241,7 +241,7 @@ module ApplicationHelper
   # @see #foodcoop_css_path
   def foodcoop_css_tag(options={})
     unless FoodsoftConfig[:custom_css].blank?
-      stylesheet_link_tag foodcoop_css_path, media: 'all'
+      stylesheet_link_tag main_app.foodcoop_css_path, media: 'all'
     end
   end
   

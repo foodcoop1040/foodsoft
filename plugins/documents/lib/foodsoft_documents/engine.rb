@@ -5,7 +5,7 @@ module FoodsoftDocuments
       return if primary[:foodcoop].nil?
       sub_nav = primary[:foodcoop].sub_navigation
       sub_nav.items <<
-        SimpleNavigation::Item.new(primary, :documents, I18n.t('navigation.documents'), context.documents_path)
+        SimpleNavigation::Item.new(primary, :documents, I18n.t('navigation.documents'), context.main_app.documents_path)
       # move to right before tasks item
       if i = sub_nav.items.index(sub_nav[:tasks])
         sub_nav.items.insert(i, sub_nav.items.delete_at(-1))

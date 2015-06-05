@@ -4,5 +4,5 @@ Forem.per_page = 20
 Forem.moderate_first_post = false
 
 Rails.application.config.to_prepare do
-  Forem::ApplicationController.layout "forem"
+  Forem::ApplicationController.layout "application"
 end
