@@ -11,6 +11,7 @@ class Group < ActiveRecord::Base
 
   attr_reader :user_tokens
 
+  scope :deleted, -> { where.not(deleted_at: nil) }
   scope :undeleted, -> { where(deleted_at: nil) }
 
   # Returns true if the given user if is an member of this group.

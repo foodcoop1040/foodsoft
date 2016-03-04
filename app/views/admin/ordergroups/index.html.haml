@@ -11,5 +11,8 @@
     'data-submit-onchange' => true, class: 'form-search' do
     = text_field_tag :query, params[:query], class: 'input-medium search-query',
       placeholder: t('admin.search_placeholder')
+    %label{:for => 'show_deleted'}
+      = check_box_tag 'show_deleted', 1, params[:show_deleted]
+      = t '.show_deleted'
 #ordergroups
   = render "ordergroups"

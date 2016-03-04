@@ -260,6 +260,7 @@ de:
         new_ordergroup: Neue Bestellgruppe anlegen
         new_ordergroups: neue Bestellgruppen
         second_paragraph: 'Beachte dabei den <em>Unterschied zwischen Gruppe und Bestellgruppe</em>: Eine Bestellgruppe hat ein Konto und kann Essen bestellen. In einer <em>%{url}</em> (z.b. ''Sortiergruppe'') koordinieren sich die Mitglieder mittels Aufgaben und Nachrichten. Nutzer/innen können immer nur einer Bestellgruppe, aber beliebig vielen anderen Gruppen angehören.'
+        show_deleted: Gelöschte Gruppen anzeigen
         title: Bestellgruppen
         workgroup: Arbeitsgruppe
       new:

@@ -265,6 +265,7 @@ en:
         new_ordergroup: Add new ordergroup
         new_ordergroups: new ordergroups
         second_paragraph: 'Consider the difference between <em>group</em> and <em>ordergroup</em>: An ordergroup has an account and can order food. In a <em>%{url}</em> (for example ''sorting group''), members coordinate with each other via tasks and messages. Users can only be in one ordergroup, but can be in multiple workgroups.'
+        show_deleted: Show deleted groups
         title: Ordergroups
         workgroup: workgroup
       new:

@@ -22,4 +22,9 @@ module MarkAsDeletedWithName
     # mark as deleted
     update_columns deleted_at: Time.now, name: deleted_name
   end
+
+  def restore
+    restored_name = name.gsub ' \u2020', '' # TODO improve automatic restoring of name
+    update_columns deleted_at: nil, name: restored_name
+  end
 end
