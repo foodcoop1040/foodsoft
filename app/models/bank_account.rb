@@ -35,4 +35,7 @@ class BankAccount < ActiveRecord::Base
     end
     count
   end
+
+  def find_import_method
+  end
 end
