@@ -52,6 +52,10 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.10.0.rc4)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
     activejob (4.2.5.2)
       activesupport (= 4.2.5.2)
       globalid (>= 0.3.0)
@@ -467,6 +471,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10.0.rc4)
   acts_as_tree
   acts_as_versioned!
   attribute_normalizer
@@ -540,6 +545,3 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   web-console (~> 2.0)
   whenever
-
-BUNDLED WITH
-   1.10.6

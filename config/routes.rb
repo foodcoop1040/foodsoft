@@ -199,6 +199,9 @@ Foodsoft::Application.routes.draw do
     namespace :api do
       namespace :v1 do
         resources :financial_transactions, only: [:index, :show]
+        resources :orders, only: [:index, :show]
+        resources :order_articles, only: [:index, :show]
+        resources :article_categories, only: [:index]
       end
     end
 
