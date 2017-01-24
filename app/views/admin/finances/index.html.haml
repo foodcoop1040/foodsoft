@@ -1,0 +1,10 @@
+- title t '.title'
+
+- content_for :actionbar do
+  = link_to t('.new_financial_transaction_class'), new_admin_financial_transaction_class_path, remote: true, class: 'btn'
+  = link_to t('.new_financial_transaction_type'), new_admin_financial_transaction_type_path, remote: true, class: 'btn'
+
+- content_for :sidebar do
+  %p= t('.first_paragraph').html_safe
+
+#transaction_types_table= render 'transaction_types'

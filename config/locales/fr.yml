@@ -1300,6 +1300,7 @@ fr:
   navigation:
     admin:
       config: 
+      finance: Trésorerie
       home: Aperçu
       ordergroups: Cellules
       title: Administration

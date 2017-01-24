@@ -37,7 +37,7 @@ describe Order do
     it 'can be closed' do
       # TODO randomise user
       order.finish!(User.first)
-      order.close!(User.first)
+      order.close!(User.first, FinancialTransactionType.first)
       expect(order).to_not be_open
       expect(order).to be_closed
     end

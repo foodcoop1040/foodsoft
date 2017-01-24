@@ -1276,6 +1276,8 @@ de:
   model:
     delivery:
       each_stock_article_must_be_unique: Lieferung darf jeden Lagerartikel höchstens einmal auflisten.
+    financial_transaction_type:
+      no_delete_last: Es muss mindestens ein Finanaztransaktionstyp existieren.
     group_order:
       stock_ordergroup_name: Lager (%{user})
     invoice:
@@ -1291,6 +1293,7 @@ de:
   navigation:
     admin:
       config: Einstellungen
+      finance: Finanzen
       home: "Übersicht"
       ordergroups: Bestellgruppen
       title: Administration

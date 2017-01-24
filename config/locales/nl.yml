@@ -1293,6 +1293,7 @@ nl:
   navigation:
     admin:
       config: Instellingen
+      finance: Financiën
       home: Overzicht
       ordergroups: Huishoudens
       title: Administratie

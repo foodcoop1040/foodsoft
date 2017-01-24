@@ -148,7 +148,7 @@ Foodsoft::Application.routes.draw do
           put :update_note
 
           get :confirm
-          patch :close
+          post :close
           patch :close_direct
 
           get :new_on_order_article_create
@@ -174,6 +174,13 @@ Foodsoft::Application.routes.draw do
 
     namespace :admin do
       root to: 'base#index'
+
+      resources :finances, only: [:index] do
+        get :update_transaction_types, on: :collection
+      end
+
+      resources :financial_transaction_classes
+      resources :financial_transaction_types
 
       resources :users do
         post :restore, on: :member
