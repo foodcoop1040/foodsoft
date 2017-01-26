@@ -382,6 +382,10 @@ ActiveRecord::Schema.define(version: 20161001000000) do
     t.string   "last_name",              limit: 255, default: "", null: false
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "phone",                  limit: 255
+    t.date     "birthday"
+    t.string   "address",                limit: 255, default: "", null: false
+    t.string   "postalcode",             limit: 255, default: "", null: false
+    t.string   "city",                   limit: 255, default: "", null: false
     t.datetime "created_on",                                      null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_expires"

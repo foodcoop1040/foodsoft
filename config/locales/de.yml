@@ -176,6 +176,10 @@ de:
         password: Passwort
         password_confirmation: Passwort wiederholen
         phone: Telefon
+        birthday: Geburtsdatum
+        address: Adresse
+        postalcode: PLZ
+        city: Ort
         workgroup:
           one: Arbeitsgruppe
           other: Arbeitsgruppen

@@ -176,6 +176,10 @@ en:
         password: Password
         password_confirmation: Repeat password
         phone: Telephone
+        birthday: Birthday
+        address: Address
+        postalcode: Postal Code
+        city: City
         workgroup:
           one: Workgroup
           other: Workgroups
