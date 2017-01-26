@@ -42,6 +42,60 @@ class BankAccount < ActiveRecord::Base
     return method(:import_from_easybank) if /^AT\d{2}14200\d{11}$/.match(iban)
   end
 
+  def assign_unchecked_transactions
+    count = 0
+    bank_transactions.unchecked.each do |t|
+      m = /^\d+$/.match(t.reference)
+      next unless m
+
+      amount_credit = 0
+      amount_deposit = 0
+      amount_membership = 0
+
+      all_2 = true
+      found_3 = false
+      ref = t.reference.to_i.to_s
+
+      ref.each_char { |c|
+        all_2 = false if c != '2'
+        case c
+        when '1'
+          if ref.length == 1
+            amount_deposit = t.amount
+          else
+            amount_deposit += 30
+          end
+        when '2'
+          if ref.length == 1
+            amount_membership = t.amount
+          else
+            amount_membership += 10
+          end
+        when '3'
+          found_3 = true
+        end
+      }
+
+      amount_membership = t.amount if all_2
+      amount_credit = t.amount - amount_deposit - amount_membership if found_3
+      next if t.amount != amount_credit + amount_membership + amount_deposit
+      user = User.find_by_iban(t.iban)
+      next if user.nil?
+      ordergroup = user.ordergroup
+      next if ordergroup.nil?
+
+      ActiveRecord::Base.transaction do
+        note = "ID=#{t.id} (EUR #{t.amount})"
+        ordergroup.add_financial_transaction! amount_deposit, note, user, FinancialTransactionType.find(1) if amount_deposit > 0
+        ordergroup.add_financial_transaction! amount_membership, note, user, FinancialTransactionType.find(2) if amount_membership > 0
+        ordergroup.add_financial_transaction! amount_credit, note, user, FinancialTransactionType.find(3) if amount_credit > 0
+        t.update_attributes checked_at: Time.now, checked_by: user
+        count += 1
+      end
+    end
+    count
+  end
+
   private
 
   def import_from_easybank(bank_account)

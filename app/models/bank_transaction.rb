@@ -3,6 +3,8 @@ class BankTransaction < ActiveRecord::Base
   belongs_to :bank_account
   belongs_to :checked_by, :class_name => 'User', :foreign_key => 'checked_by_user_id'
 
+  scope :unchecked, -> { where(checked_by: nil) }
+
   validates_presence_of :booking_date, :amount, :bank_account_id
   validates_numericality_of :amount
 
