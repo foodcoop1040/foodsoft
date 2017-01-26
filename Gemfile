@@ -47,6 +47,7 @@ gem 'roo-xls'
 gem 'spreadsheet'
 gem 'gaffe'
 gem 'ruby-filemagic'
+gem 'easybank', git: "git://github.com/paroga/ruby-easybank.git"
 
 # we use the git version of acts_as_versioned, and need to include it in this Gemfile
 gem 'acts_as_versioned', github: 'technoweenie/acts_as_versioned'

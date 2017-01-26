@@ -1,3 +1,4 @@
+require 'easybank'
 require 'roo'
 
 class BankAccount < ActiveRecord::Base
@@ -37,5 +38,46 @@ class BankAccount < ActiveRecord::Base
   end
 
   def find_import_method
+    # TODO: Move lookup for import function into plugin
+    return method(:import_from_easybank) if /^AT\d{2}14200\d{11}$/.match(iban)
+  end
+
+  private
+
+  def import_from_easybank(bank_account)
+    easybank_config = FoodsoftConfig[:easybank]
+    raise "easybank configuration missing" if not easybank_config
+
+    dn = easybank_config[:dn]
+    pin = easybank_config[:pin]
+    account = bank_account.iban[-11,11]
+
+    count = 0
+    last_import_id = nil
+
+    Easybank.login(dn, pin) do |eb|
+      bank_account.balance = eb.balance(account)
+      eb.transactions(account, bank_account.last_import_id).each do |t|
+        bank_account.bank_transactions.where(:import_id => t[:id]).first_or_create.update(
+          :booking_date => t[:booking_date],
+          :value_date => t[:value_date],
+          :amount => t[:amount],
+          :booking_type => t[:type],
+          :iban => t[:iban],
+          :reference => t[:reference] ? t[:reference] : t[:reference2],
+          :text => t[:raw],
+          :receipt => t[:receipt],
+          :image => t[:image])
+
+        count += 1
+        last_import_id = t[:id]
+      end
+    end
+
+    bank_account.last_import = Time.now
+    bank_account.last_import_id = last_import_id unless last_import_id.nil?
+    bank_account.save!
+
+    return count
   end
 end

@@ -5,6 +5,13 @@ GIT
     localize_input (0.1.0)
 
 GIT
+  remote: git://github.com/paroga/ruby-easybank.git
+  revision: eae45a4cd541505bc2ea7373b519aa04f5c5b685
+  specs:
+    easybank (0.0.1)
+      mechanize
+
+GIT
   remote: git://github.com/technoweenie/acts_as_versioned.git
   revision: 63b1fc8529d028fae632fe80ec0cb25df56cd76b
   specs:
@@ -142,6 +149,8 @@ GEM
     diff-lcs (1.2.5)
     diffy (3.1.0)
     docile (1.1.5)
+    domain_name (0.5.20161129)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     eventmachine (1.0.9.1)
     exception_notification (4.1.4)
@@ -179,6 +188,8 @@ GEM
       nokogiri (~> 1.6.0)
       ruby_parser (~> 3.5)
     htmlentities (4.3.4)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     i18n-js (3.0.0.rc12)
       i18n (~> 0.6, >= 0.6.6)
@@ -222,6 +233,15 @@ GEM
       skinny (~> 0.2.3)
       sqlite3 (~> 1.3)
       thin (~> 1.5.0)
+    mechanize (2.7.5)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0)
+      mime-types (>= 1.17.2)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.6)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
     meta_request (0.4.0)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -235,12 +255,15 @@ GEM
     mono_logger (1.1.0)
     multi_json (1.12.1)
     mysql2 (0.4.4)
+    net-http-digest_auth (1.4)
+    net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.1.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    ntlm-http (0.1.1)
     pdf-core (0.6.1)
     pkg-config (1.1.7)
     polyamorous (1.3.0)
@@ -452,6 +475,7 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    webrobots (0.1.2)
     websocket (1.2.3)
     whenever (0.9.4)
       chronic (>= 0.6.3)
@@ -485,6 +509,7 @@ DEPENDENCIES
   daemons
   database_cleaner
   date_time_attribute
+  easybank!
   exception_notification
   factory_girl_rails
   faker
