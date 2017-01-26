@@ -66,6 +66,31 @@ ActiveRecord::Schema.define(version: 20161001000000) do
 
   add_index "assignments", ["user_id", "task_id"], name: "index_assignments_on_user_id_and_task_id", unique: true, using: :btree
 
+  create_table "bank_accounts", force: :cascade do |t|
+    t.string   "name",                                    null: false
+    t.string   "iban"
+    t.string   "description"
+    t.decimal  "balance",        precision: 12, scale: 2, null: false
+    t.datetime "last_import"
+    t.string   "last_import_id"
+  end
+
+  create_table "bank_transactions", force: :cascade do |t|
+    t.integer  "bank_account_id",                            null: false
+    t.string   "import_id"
+    t.date     "booking_date"
+    t.date     "value_date"
+    t.decimal  "amount",             precision: 8, scale: 2, null: false
+    t.string   "booking_type"
+    t.string   "iban"
+    t.string   "reference"
+    t.text     "text"
+    t.text     "receipt"
+    t.binary   "image"
+    t.datetime "checked_at"
+    t.integer  "checked_by_user_id"
+  end
+
   create_table "deliveries", force: :cascade do |t|
     t.integer  "supplier_id",  limit: 4
     t.date     "delivered_on"

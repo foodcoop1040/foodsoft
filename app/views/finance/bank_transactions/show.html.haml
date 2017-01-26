@@ -1,0 +1,40 @@
+%p
+  %b= heading_helper(BankTransaction, :import_id) + ':'
+  = @bank_transaction.import_id
+%p
+  %b= heading_helper(BankTransaction, :booking_date) + ':'
+  = @bank_transaction.booking_date
+%p
+  %b= heading_helper(BankTransaction, :value_date) + ':'
+  = @bank_transaction.value_date
+%p
+  %b= heading_helper(BankTransaction, :amount) + ':'
+  = number_to_currency(@bank_transaction.amount)
+%p
+  %b= heading_helper(BankTransaction, :booking_type) + ':'
+  = @bank_transaction.booking_type
+%p
+  %b= heading_helper(BankTransaction, :iban) + ':'
+  = @bank_transaction.iban
+  - if @user
+    = " belongs to #{@user.display}"
+    - if @user.ordergroup
+      = " at "
+      = link_to @user.ordergroup.name, finance_ordergroup_transactions_path(@user.ordergroup)
+%p
+  %b= heading_helper(BankTransaction, :reference) + ':'
+  = @bank_transaction.reference
+%p
+  %b= heading_helper(BankTransaction, :text) + ':'
+  = h(@bank_transaction.text).gsub("\n", "<br>").html_safe
+- if @bank_transaction.checked_by
+  %p
+    %b= heading_helper(BankTransaction, :checked_by) + ':'
+    = "#{show_user(@bank_transaction.checked_by)} (#{format_time(@bank_transaction.checked_at)})"
+
+- unless @bank_transaction.receipt.blank?
+  %pre= preserve @bank_transaction.receipt
+- if @bank_transaction.image
+  %p= image_tag @bank_transaction.image_url
+
+= link_to t('ui.or_cancel'), finance_bank_account_transactions_path(@bank_transaction.bank_account)

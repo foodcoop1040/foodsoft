@@ -168,6 +168,20 @@ Foodsoft::Application.routes.draw do
 
       get 'transactions/new_collection' => 'financial_transactions#new_collection', as: 'new_transaction_collection'
       post 'transactions/create_collection' => 'financial_transactions#create_collection', as: 'create_transaction_collection'
+
+      resources :bank_accounts, only: [:index] do
+        member do
+          get :import
+          post :parse_upload
+        end
+
+        resources :bank_transactions, as: :transactions
+      end
+
+      resources :bank_transactions do
+        post :mark_checked, on: :member
+      end
+
     end
 
     ########### Administration
@@ -176,9 +190,11 @@ Foodsoft::Application.routes.draw do
       root to: 'base#index'
 
       resources :finances, only: [:index] do
+        get :update_bank_accounts, on: :collection
         get :update_transaction_types, on: :collection
       end
 
+      resources :bank_accounts
       resources :financial_transaction_classes
       resources :financial_transaction_types
 
