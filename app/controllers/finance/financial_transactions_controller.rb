@@ -47,7 +47,7 @@ class Finance::FinancialTransactionsController < ApplicationController
   end
 
   def create
-    @financial_transaction = FinancialTransaction.new(params[:financial_transaction])
+    @financial_transaction = FinancialTransaction.new(financial_transaction_params)
     @financial_transaction.user = current_user
     if @financial_transaction.ordergroup
       @financial_transaction.add_transaction!
@@ -130,6 +130,12 @@ class Finance::FinancialTransactionsController < ApplicationController
     else
       @foodcoop = true
     end
+  end
+
+  def financial_transaction_params
+    params
+      .require(:financial_transaction)
+      .permit(:ordergroup_id, :financial_transaction_type_id, :amount, :note)
   end
 
 end

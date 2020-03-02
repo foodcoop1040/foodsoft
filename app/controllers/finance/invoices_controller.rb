@@ -37,7 +37,7 @@ class Finance::InvoicesController < ApplicationController
   end
 
   def create
-    @invoice = Invoice.new(params[:invoice])
+    @invoice = Invoice.new(invoice_params)
     @invoice.created_by = current_user
 
     if @invoice.save
@@ -55,7 +55,7 @@ class Finance::InvoicesController < ApplicationController
   end
 
   def update
-    if @invoice.update_attributes(params[:invoice])
+    if @invoice.update_attributes(invoice_params)
       redirect_to [:finance, @invoice], notice: I18n.t('finance.update.notice')
     else
       fill_deliveries_and_orders_collection @invoice.id, @invoice.supplier_id
@@ -88,4 +88,12 @@ class Finance::InvoicesController < ApplicationController
       deny_access
     end
   end
+
+  def invoice_params
+    params
+      .require(:invoice)
+      .permit(:supplier_id, :number, :date, :paid_on, :amount, :deposit,
+        :deposit_credit, :attachment, :note, delivery_ids: [], order_ids: [])
+  end
+
 end

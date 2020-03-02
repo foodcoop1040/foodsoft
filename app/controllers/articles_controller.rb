@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params[:article])
+    @article = Article.new(article_params)
     if @article.valid? && @article.save
       render :layout => false
     else
@@ -65,7 +65,7 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
 
-    if @article.update_attributes(params[:article])
+    if @article.update_attributes(article_params)
       render :layout => false
     else
       render :action => 'new', :layout => false
@@ -90,17 +90,17 @@ class ArticlesController < ApplicationController
 
     begin
       Article.transaction do
-        unless params[:articles].blank?
-          # Update other article attributes...
-          @articles = Article.find(params[:articles].keys)
-          @articles.each do |article|
-            unless article.update_attributes(params[:articles][article.id.to_s])
-              invalid_articles = true unless invalid_articles # Remember that there are validation errors
-            end
-          end
+        articles = articles_params
 
-          raise ActiveRecord::Rollback  if invalid_articles # Rollback all changes
+        # Update other article attributes...
+        @articles = Article.find(articles.keys)
+        @articles.each do |article|
+          unless article.update_attributes(articles[article.id.to_s])
+            invalid_articles = true unless invalid_articles # Remember that there are validation errors
+          end
         end
+
+        raise ActiveRecord::Rollback if invalid_articles # Rollback all changes
       end
     end
 
@@ -178,9 +178,10 @@ class ArticlesController < ApplicationController
   # Updates, deletes articles when upload or sync form is submitted
   def update_synchronized
     @outlisted_articles = Article.find(params[:outlisted_articles].try(:keys)||[])
-    @updated_articles = Article.find(params[:articles].try(:keys)||[])
-    @updated_articles.map{|a| a.assign_attributes(params[:articles][a.id.to_s]) }
-    @new_articles = (params[:new_articles]||[]).map{|a| @supplier.articles.build(a) }
+    articles = articles_params
+    @updated_articles = Article.find(articles.keys)
+    @updated_articles.map{|a| a.assign_attributes(articles[a.id.to_s]) }
+    @new_articles = (new_articles_params).map{|a| @supplier.articles.build(a) }
 
     has_error = false
     Article.transaction do
@@ -245,4 +246,24 @@ class ArticlesController < ApplicationController
     end
   end
   helper_method :ignored_article_count
+
+  def articles_params
+    ret = params[:articles]
+    return Hash.new unless ret
+    ret
+  end
+
+  def new_articles_params
+    ret = params[:new_articles]
+    return [] unless ret
+    ret
+  end
+
+  def article_params
+    params
+      .require(:article)
+      .permit(:shared_updated_on, :supplier_id, :availability, :name,
+        :unit_quantity, :unit, :note, :organic, :article_category_id,
+        :price, :tax, :deposit, :origin, :manufacturer, :order_number)
+  end
 end
